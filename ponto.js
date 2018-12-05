@@ -31,7 +31,6 @@ function formataPayload (data) {
 function disparaPonto (data) {
     const payload = formataPayload(data);
 
-    // console.log(payload, userConfig);
     fetch(url, {
         method: 'POST',
         headers: userConfig,

@@ -1,5 +1,6 @@
 // Requires
 const fetch = require('node-fetch');
+const ehDiaUtil = require('eh-dia-util');
 
 // Config
 const user = require('./config/user.json');
@@ -25,16 +26,19 @@ function disparaPonto (data) {
 function corrigePonto(inicio, fim) {
     const parseInicio = inicio.split('-');
     const parseFim = fim.split('-');
-    const dataInicial = Number(parseInicio[2]);
-    const dataFinal = Number(parseFim[2]);
+    const dataInicial = new Date(parseInicio[0], parseInicio[1] -1 , parseInicio[2]);
+    const dataFinal = new Date(parseFim[0], parseFim[1] - 1, parseFim[2]);
 
-    const qtdDias = dataFinal - dataInicial;
+    let dataCorrente = dataInicial;
 
-    for (let dia = 0; dia <= qtdDias; dia++) {
-        const dataDisparo = parseInicio
-        dataDisparo[2] = Number(dataInicial) + dia;
-        disparaPonto(dataDisparo.join('-'));
-    } 
+    while (dataCorrente <= dataFinal) {
+        if (ehDiaUtil(dataCorrente)) {
+            disparaPonto([dataCorrente.getFullYear(), dataCorrente.getMonth() + 1, dataCorrente.getDate()].join('-'));
+            // console.log(dataCorrente.getFullYear(), dataCorrente.getMonth() + 1, dataCorrente.getDate());
+        }
+
+        dataCorrente.setTime( dataCorrente.getTime() + 1 * 86400000 );
+    }
 }
 
 function tamoAquiNaRetroatividade({inicio, fim}) {

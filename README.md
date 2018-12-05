@@ -9,7 +9,7 @@ Rodar
 npm i
 ```
 
-Atualizar o arquivo `userConfig.json` com suas credenciais.
+Atualizar o arquivo `config/user.json` com suas credenciais.
 
 Para pegas suas credenciais, basta acessar o PontoMais e realizar algum request, consultando os dados dentro de `response headers`.
 
@@ -27,4 +27,4 @@ Onde:
 # Observações
 As datas são cadastradas uma por uma, dentro desse range informado, ou seja: caso haja datas especiais (feriados/finais de semana) dentro dessa data, elas também serão cadastradas.
 
-Caso deseje alterar os horários padrões, você deverá atualizar manualmente dentro do arquivo `payload.js`.
+Caso deseje alterar os horários padrões, você deverá atualizar manualmente dentro do arquivo `config/payload.json`.

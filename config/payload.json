@@ -1,4 +1,4 @@
-module.exports = {
+{
     "proposal": {
         "date": "2018-09-25",
         "motive": "Ajuste retroativo",
@@ -34,4 +34,4 @@ module.exports = {
         "version": null
     },
     "_appVersion": "0.10.30"
-};
+}

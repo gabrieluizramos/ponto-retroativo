@@ -21,7 +21,7 @@ function disparaPonto (data) {
         headers: user,
         body: JSON.stringify(payload)
     })
-    .then(data => console.log(messages.saving.success, data))
+    .then(res => console.log(messages.saving.success.replace('[#data#]', data), res))
     .catch(err => console.log(messages.saving.failure));
 }
 
@@ -43,7 +43,7 @@ function corrigePonto(inicio, fim) {
 
         if (ehDiaUtil(dataCorrente)) {
             console.log(messages.saving.fetching.replace('[#data#]', formattedDate).replace('[#dia-da-semana#]', weekday));
-            // disparaPonto(formattedDate);
+            disparaPonto(formattedDate);
             // console.log(dataCorrente.getFullYear(), dataCorrente.getMonth() + 1, dataCorrente.getDate());
         }
         else {

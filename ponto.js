@@ -1,26 +1,28 @@
 // Requires
 const fetch = require('node-fetch');
 const ehDiaUtil = require('eh-dia-util');
+const delorean = require('@gabrieluizramos/delorean-js');
 
 // Config
 const user = require('./config/user.json');
 const {url} = require('./config/api.json');
+const messages = require('./config/messages.json');
 
 // Helpers
 const {dataEhValida} = require('./helpers/validators');
-const {formataPayload} = require('./helpers/formatters');
+const {formataPayload, formatNumberWith2Digits} = require('./helpers/formatters');
 
 
 function disparaPonto (data) {
     const payload = formataPayload(data);
-
+    
     fetch(url, {
         method: 'POST',
         headers: user,
         body: JSON.stringify(payload)
     })
-    .then(data => console.log('cadastrado com sucesso', data))
-    .catch(err => console.log('erro ao cadastar'));
+    .then(data => console.log(messages.saving.success, data))
+    .catch(err => console.log(messages.saving.failure));
 }
 
 function corrigePonto(inicio, fim) {
@@ -32,9 +34,20 @@ function corrigePonto(inicio, fim) {
     let dataCorrente = dataInicial;
 
     while (dataCorrente <= dataFinal) {
+        const year = dataCorrente.getFullYear();
+        const month = dataCorrente.getMonth() + 1;
+        const day = dataCorrente.getDate();
+
+        const formattedDate = `${year}-${formatNumberWith2Digits(month)}-${formatNumberWith2Digits(day)}`;
+        const weekday = delorean.setDate(formattedDate).getWeekDay('long');
+
         if (ehDiaUtil(dataCorrente)) {
-            disparaPonto([dataCorrente.getFullYear(), dataCorrente.getMonth() + 1, dataCorrente.getDate()].join('-'));
+            console.log(messages.saving.fetching.replace('[#data#]', formattedDate).replace('[#dia-da-semana#]', weekday));
+            // disparaPonto(formattedDate);
             // console.log(dataCorrente.getFullYear(), dataCorrente.getMonth() + 1, dataCorrente.getDate());
+        }
+        else {
+            console.log(messages.notWorkingDay.replace('[#data#]', formattedDate).replace('[#dia-da-semana#]', weekday));
         }
 
         dataCorrente.setTime( dataCorrente.getTime() + 1 * 86400000 );
@@ -46,7 +59,7 @@ function tamoAquiNaRetroatividade({inicio, fim}) {
         corrigePonto(inicio, fim);
     }
     else {
-        console.log('Data invalida');
+        console.log(messages.invalidDate);
     }
 }
 

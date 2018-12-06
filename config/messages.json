@@ -1,0 +1,9 @@
+{
+    "invalidDate": "Data inválida",
+    "notWorkingDay": "Dia [#data#] ([#dia-da-semana#]) não foi dia útil",
+    "saving": {
+        "fetching": "Cadastrando ponto retroativo do dia [#data#] ([#dia-da-semana#])...",
+        "success": "Ponto retroativo de [#data#] cadastrado com sucesso! :)",
+        "failure": "Erro ao cadastrar ponto em [#data#] retroativo... :("
+    }
+}

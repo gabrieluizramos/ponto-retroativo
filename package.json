@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@gabrieluizramos/delorean-js": "^1.1.0",
+    "eh-dia-util": "^1.0.1",
     "node-fetch": "^2.3.0"
   }
 }

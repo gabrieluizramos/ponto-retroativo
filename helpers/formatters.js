@@ -16,6 +16,9 @@ function formataPayload (data) {
     return ponto;
 }
 
+const formatNumberWith2Digits = (number) => number < 10 ? `0${number}` : number;
+
 module.exports = {
-    formataPayload
+    formataPayload,
+    formatNumberWith2Digits
 };

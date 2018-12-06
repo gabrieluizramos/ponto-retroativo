@@ -25,6 +25,4 @@ Onde:
 
 
 # Observações
-As datas são cadastradas uma por uma, dentro desse range informado, ou seja: caso haja datas especiais (feriados/finais de semana) dentro dessa data, elas também serão cadastradas.
-
 Caso deseje alterar os horários padrões, você deverá atualizar manualmente dentro do arquivo `config/payload.json`.

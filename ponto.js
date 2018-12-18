@@ -14,12 +14,10 @@ const {formataPayload, formatNumberWith2Digits} = require('./helpers/formatters'
 
 
 function disparaPonto (data) {
-    const payload = formataPayload(data);
-    
     fetch(url, {
         method: 'POST',
         headers: user,
-        body: JSON.stringify(payload)
+        body: JSON.stringify(formataPayload(data))
     })
     .then(res => console.log(messages.saving.success.replace('[#data#]', data), res))
     .catch(err => console.log(messages.saving.failure));
@@ -42,9 +40,7 @@ function corrigePonto(inicio, fim) {
         const weekday = delorean.setDate(formattedDate).getWeekDay('long');
 
         if (ehDiaUtil(dataCorrente)) {
-            console.log(messages.saving.fetching.replace('[#data#]', formattedDate).replace('[#dia-da-semana#]', weekday));
             disparaPonto(formattedDate);
-            // console.log(dataCorrente.getFullYear(), dataCorrente.getMonth() + 1, dataCorrente.getDate());
         }
         else {
             console.log(messages.notWorkingDay.replace('[#data#]', formattedDate).replace('[#dia-da-semana#]', weekday));

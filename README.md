@@ -11,7 +11,7 @@ npm i
 
 Atualizar o arquivo `config/user.json` com suas credenciais.
 
-Para pegas suas credenciais, basta acessar o PontoMais e realizar algum request, consultando os dados dentro de `response headers`.
+Para descobrir suas credenciais, basta acessar o PontoMais e realizar algum request, consultando os dados dentro de `response headers`.
 
 Para atualizar seus pontos retroativos, rodar:
 
@@ -25,4 +25,9 @@ Onde:
 
 
 # Observações
-Caso deseje alterar os horários padrões, você deverá atualizar manualmente dentro do arquivo `config/payload.json`.
+Caso deseje alterar os horários padrões, você deverá configurar manualmente dentro do arquivo `config/custom-times.json`.
+Para isso, basta alterar o json com as seguintes chaves:
+    -`default`: para os horários de dias normais não definidos.
+    -de `Mon` até `Fri`: para configurar os horários de um dia específico.
+
+

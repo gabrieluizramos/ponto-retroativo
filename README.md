@@ -27,7 +27,7 @@ Onde:
 # Observações
 Caso deseje alterar os horários padrões, você deverá configurar manualmente dentro do arquivo `config/custom-times.json`.
 Para isso, basta alterar o json com as seguintes chaves:
-    - `default`: para os horários de dias normais não definidos.
-    - de `Mon` até `Fri`: para configurar os horários de um dia específico.
+  - `default`: para os horários de dias normais não definidos.
+  - de `Mon` até `Fri`: para configurar os horários de um dia específico.
 
 

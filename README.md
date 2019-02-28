@@ -31,3 +31,20 @@ Para isso, basta alterar o json com as seguintes chaves:
   - de `Mon` até `Fri`: para configurar os horários de um dia específico.
 
 
+**Feriados municipais**
+O app utiliza a API de [Calendário](http://www.calendario.com.br/api_feriados_municipais_estaduais_nacionais.php) para checar eventuais feriados municipais.
+Por padrão a cidade e estado consultado é São Paulo. Com os valores utilizados na consulta são:
+- Cidade: 'SAO_PAULO'
+- Estado: 'SP'
+
+Foi cadastrado um token prévio para realizar a consulta nessa API. Sinta-se livre para inserir o seu diretamente no arquivo de [configurações](./helpers/feriados-municipais/config.js) ou através do parâmetro **token** através de **process.env** ao executar o programa, como é necessário informar as datas iniciais e finais. Por exemplo:
+
+```sh
+inicio=data_inicio fim=data_fim token=meu_token npm start
+```
+
+Caso deseje realizar a consulta utilizando outra cidade/estado, seguindo a documentação da API de Calendário, basta passar esses valores ao executar a aplicação também, como:
+
+```sh
+inicio=data_inicio fim=data_fim cidade=minha_cidade estado=meu_estado npm start
+```

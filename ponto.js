@@ -1,6 +1,5 @@
 // Requires
 const fetch = require('node-fetch');
-const ehDiaUtil = require('eh-dia-util');
 const delorean = require('@gabrieluizramos/delorean-js');
 
 // Config
@@ -10,7 +9,8 @@ const messages = require('./config/messages.json');
 
 // Helpers
 const {dataEhValida} = require('./helpers/validators');
-const {formataPayload, formatNumberWith2Digits} = require('./helpers/formatters');
+const {formataPayload, formateDateToISO} = require('./helpers/formatters');
+const ehDiaUtil = require('./helpers/eh-dia-util');
 
 
 function disparaPonto (data) {
@@ -23,7 +23,7 @@ function disparaPonto (data) {
     .catch(err => console.log(messages.saving.failure));
 }
 
-function corrigePonto(inicio, fim) {
+async function corrigePonto(inicio, fim) {
     const parseInicio = inicio.split('-');
     const parseFim = fim.split('-');
     const dataInicial = new Date(parseInicio[0], parseInicio[1] -1 , parseInicio[2]);
@@ -32,14 +32,10 @@ function corrigePonto(inicio, fim) {
     let dataCorrente = dataInicial;
 
     while (dataCorrente <= dataFinal) {
-        const year = dataCorrente.getFullYear();
-        const month = dataCorrente.getMonth() + 1;
-        const day = dataCorrente.getDate();
-
-        const formattedDate = `${year}-${formatNumberWith2Digits(month)}-${formatNumberWith2Digits(day)}`;
+        const formattedDate = formateDateToISO(dataCorrente);
         const weekday = delorean.setDate(formattedDate).getWeekDay('long');
 
-        if (ehDiaUtil(dataCorrente)) {
+        if (await ehDiaUtil(dataCorrente)) {
             disparaPonto(formattedDate);
         }
         else {

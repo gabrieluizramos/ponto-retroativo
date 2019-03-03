@@ -34,8 +34,9 @@ async function corrigePonto(inicio, fim) {
     while (dataCorrente <= dataFinal) {
         const formattedDate = formateDateToISO(dataCorrente);
         const weekday = delorean.setDate(formattedDate).getWeekDay('long');
+        const deveCorrigirPonto = await ehDiaUtil(dataCorrente); 
 
-        if (await ehDiaUtil(dataCorrente)) {
+        if (deveCorrigirPonto) {
             disparaPonto(formattedDate);
         }
         else {

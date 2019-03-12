@@ -37,14 +37,10 @@ Por padrão a cidade e estado consultado é São Paulo. Com os valores utilizado
 - Cidade: 'SAO_PAULO'
 - Estado: 'SP'
 
-Foi cadastrado um token prévio para realizar a consulta nessa API. Sinta-se livre para inserir o seu diretamente no arquivo de [configurações](./helpers/feriados-municipais/config.js) ou através do parâmetro **token** através de **process.env** ao executar o programa, como é necessário informar as datas iniciais e finais. Por exemplo:
+Foi cadastrado um token prévio para realizar a consulta nessa API. Sinta-se livre para inserir o seu diretamente no arquivo de [configurações](./config/calendario.json), ou alterar a cidade e estado da consulta.
+
+Caso prefira, você pode passar esses valores ao executar a aplicação também (via **process.env**), como:
 
 ```sh
-inicio=data_inicio fim=data_fim token=meu_token npm start
-```
-
-Caso deseje realizar a consulta utilizando outra cidade/estado, seguindo a documentação da API de Calendário, basta passar esses valores ao executar a aplicação também, como:
-
-```sh
-inicio=data_inicio fim=data_fim cidade=minha_cidade estado=meu_estado npm start
+inicio=data_inicio fim=data_fim cidade=minha_cidade estado=meu_estado token=meu_token npm start
 ```

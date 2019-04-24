@@ -4,6 +4,8 @@
     "saving": {
         "fetching": "Cadastrando ponto retroativo do dia [#data#] ([#dia-da-semana#])...",
         "success": "Ponto retroativo de [#data#] cadastrado com sucesso! :)",
-        "failure": "Erro ao cadastrar ponto em [#data#] retroativo... :("
-    }
+        "failure": "Erro ao cadastrar ponto em [#data#] retroativo... :(",
+        "warning": "Pode ser que tenha ocorrido um erro no ponto de [#data#]"
+    },
+    "separator": "---------------------------------------------------------------"
 }

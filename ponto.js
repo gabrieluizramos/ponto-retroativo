@@ -19,8 +19,18 @@ function disparaPonto (data) {
         headers: user,
         body: JSON.stringify(formataPayload(data))
     })
-    .then(res => console.log(messages.saving.success.replace('[#data#]', data), res))
-    .catch(err => console.log(messages.saving.failure));
+    .then(res => res.json())
+    .then(res => {
+        if(!res.errors) {
+            console.log(messages.saving.success.replace('[#data#]', data));
+            console.log(res);
+        } else {
+            console.log(messages.saving.warning.replace('[#data#]', data));
+            console.log(res.errors);
+        }
+    })
+    .catch(err => console.log(messages.saving.failure))
+    .then(() => console.log(messages.separator));
 }
 
 async function corrigePonto(inicio, fim) {

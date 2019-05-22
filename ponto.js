@@ -13,11 +13,11 @@ const {formataPayload, formateDateToISO} = require('./helpers/formatters');
 const ehDiaUtil = require('./helpers/eh-dia-util');
 
 
-function disparaPonto (data) {
+function disparaPonto (data, random) {
     fetch(url, {
         method: 'POST',
         headers: user,
-        body: JSON.stringify(formataPayload(data))
+        body: JSON.stringify(formataPayload(data, random))
     })
     .then(res => res.json())
     .then(res => {
@@ -33,7 +33,7 @@ function disparaPonto (data) {
     .then(() => console.log(messages.separator));
 }
 
-async function corrigePonto(inicio, fim) {
+async function corrigePonto(inicio, fim, random) {
     const parseInicio = inicio.split('-');
     const parseFim = fim.split('-');
     const dataInicial = new Date(parseInicio[0], parseInicio[1] -1 , parseInicio[2]);
@@ -47,7 +47,7 @@ async function corrigePonto(inicio, fim) {
         const deveCorrigirPonto = await ehDiaUtil(dataCorrente); 
 
         if (deveCorrigirPonto) {
-            disparaPonto(formattedDate);
+            disparaPonto(formattedDate, random);
         }
         else {
             console.log(messages.notWorkingDay.replace('[#data#]', formattedDate).replace('[#dia-da-semana#]', weekday));
@@ -57,9 +57,9 @@ async function corrigePonto(inicio, fim) {
     }
 }
 
-function tamoAquiNaRetroatividade({inicio, fim}) {
+function tamoAquiNaRetroatividade({inicio, fim, random}) {
     if (inicio.trim() && fim.trim() && dataEhValida(inicio, fim)) {
-        corrigePonto(inicio, fim);
+        corrigePonto(inicio, fim, random);
     }
     else {
         console.log(messages.invalidDate);

@@ -16,12 +16,13 @@ Para descobrir suas credenciais, basta acessar o PontoMais e realizar algum requ
 Para atualizar seus pontos retroativos, rodar:
 
 ```sh
-inicio=data_inicio fim=data_fim npm start
+inicio=data_inicio fim=data_fim random=booleano(opcional) npm start
 ```
 
 Onde: 
 - data_inicio: uma data de inicio, seguindo modelo ISO padrao (aaaa-mm-dd)
 - data_fim: uma data de fim, seguindo modelo ISO padrao (aaaa-mm-dd)
+- (opcional) random: caso seja `true`, randomiza os minutos (em um range de, no máximo, 10) dos horários
 
 
 # Observações

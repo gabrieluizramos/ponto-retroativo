@@ -12,9 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@gabrieluizramos/delorean-js": "^1.1.0",
-    "eh-dia-util": "^1.0.1",
-    "node-fetch": "^2.3.0",
-    "xml2json": "^0.11.2"
+    "@gabrieluizramos/delorean-js": "~1.1.0",
+    "eh-dia-util": "~1.0.1",
+    "node-fetch": "~2.3.0",
+    "xml2json": "~0.11.2"
   }
 }
